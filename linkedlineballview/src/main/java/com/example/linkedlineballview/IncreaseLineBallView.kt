@@ -209,4 +209,12 @@ class IncreaseLineBallView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : IncreaseLineBallView {
+            val view : IncreaseLineBallView = IncreaseLineBallView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
