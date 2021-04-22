@@ -41,9 +41,9 @@ fun Canvas.drawIncreaseLineBall(scale : Float, w : Float, h : Float, paint : Pai
         val sfj : Float = sf.divideScale(j, circles)
         save()
         translate(0f, gap * j)
-        drawCircle(0f, 0f, (r / (j + 1)) * sfj, paint)
+        drawCircle(0f, 0f, (r / (j + 1)) * sfj.divideScale(0, 2), paint)
         if (j != circles - 1) {
-            drawLine(0f, 0f, 0f, gap * sfj, paint)
+            drawLine(0f, 0f, 0f, gap * sfj.divideScale(1, 2), paint)
         }
         restore()
     }
@@ -196,6 +196,7 @@ class IncreaseLineBallView(ctx : Context) : View(ctx) {
 
         fun render(canvas : Canvas) {
             canvas.drawColor(backColor)
+            ilb.draw(canvas, paint)
             animator.animate {
                 ilb.update {
                     animator.stop()
