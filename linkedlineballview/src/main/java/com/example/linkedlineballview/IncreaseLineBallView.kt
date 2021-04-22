@@ -59,4 +59,16 @@ fun Canvas.drawILBNode(i : Int, scale : Float, paint : Paint) {
     drawIncreaseLineBall(scale, w, h, paint)
 }
 
+class IncreaseLineBallView(ctx : Context) : View(ctx) {
 
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+
+        }
+        return true
+    }
+}
