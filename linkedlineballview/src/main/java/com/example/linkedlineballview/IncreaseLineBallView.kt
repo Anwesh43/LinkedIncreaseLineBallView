@@ -30,3 +30,33 @@ fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
 fun Float.sinify() : Float = Math.sin(this * Math.PI).toFloat()
 
+fun Canvas.drawIncreaseLineBall(scale : Float, w : Float, h : Float, paint : Paint) {
+
+    val r : Float = Math.min(w, h) / rFactor
+    val gap : Float = (h - 2 * r) / lines
+    val sf : Float = scale.sinify()
+    save()
+    translate(w / 2, r)
+    for (j in 0..(circles - 1)) {
+        val sfj : Float = sf.divideScale(j, circles)
+        save()
+        translate(0f, gap * j)
+        drawCircle(0f, 0f, (r / (j + 1)) * sfj, paint)
+        if (j != circles - 1) {
+            drawLine(0f, 0f, 0f, gap * sfj, paint)
+        }
+        restore()
+    }
+    restore()
+}
+
+fun Canvas.drawILBNode(i : Int, scale : Float, paint : Paint) {
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    paint.color = colors[i]
+    paint.strokeCap = Paint.Cap.ROUND
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+    drawIncreaseLineBall(scale, w, h, paint)
+}
+
+
