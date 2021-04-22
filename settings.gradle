@@ -1,0 +1,3 @@
+include ':linkedlineballview'
+include ':app'
+rootProject.name = "LinkedIncreaseLineBallView"
